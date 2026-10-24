@@ -2,3 +2,16 @@
 
 :root{--forest:#0a2e26;--forest-2:#123f33;--lime:#c8f169;--cream:#f7f6f0;--ink:#13211d;--muted:#75807a;--line:rgba(19,33,29,.14)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Arial,Helvetica,sans-serif}a{color:inherit;text-decoration:none}button,input,select{font:inherit}button,a{ -webkit-tap-highlight-color:transparent}.container{width:min(1180px,calc(100% - 48px));margin-inline:auto}.eyebrow{font-size:11px;letter-spacing:.19em;text-transform:uppercase;font-weight:700}.section{padding:88px 0}.display{font-size:clamp(42px,7vw,86px);line-height:.95;letter-spacing:-.065em;font-weight:700}.subhead{font-size:clamp(30px,4vw,48px);line-height:1.02;letter-spacing:-.05em}.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:14px 18px;border-radius:3px;background:var(--lime);color:var(--forest);font-weight:700;font-size:13px}.btn-ghost{border:1px solid rgba(255,255,255,.45);background:transparent;color:white}.navlink{font-size:12px;color:#e6eee9}.tile{background:white;border:1px solid var(--line)}.field{width:100%;padding:13px 14px;background:white;border:1px solid var(--line);border-radius:3px;color:var(--ink)}.field:focus{outline:2px solid var(--forest-2);outline-offset:1px}@media(max-width:700px){.container{width:min(100% - 32px,1180px)}.section{padding:58px 0}.desktop-nav{display:none}}
+
+
+/* Premium KSI atmosphere: restrained floating bubbles and dimensional crest */
+.ksi-crest{transform-style:preserve-3d;backface-visibility:visible;animation:ksi-crest-loop 12s cubic-bezier(.45,.05,.55,.95) infinite;filter:drop-shadow(0 10px 18px rgba(0,0,0,.28));}
+@keyframes ksi-crest-loop{0%{transform:perspective(900px) rotateY(0deg) rotateX(0deg) translateZ(0)}60%{transform:perspective(900px) rotateY(360deg) rotateX(7deg) translateZ(14px)}75%,100%{transform:perspective(900px) rotateY(360deg) rotateX(0deg) translateZ(0)}}
+.ksi-crest-shell{perspective:1000px;isolation:isolate}
+.ambient-bubbles{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:1;opacity:.34}
+.ambient-bubbles:before,.ambient-bubbles:after{content:"";position:absolute;width:clamp(180px,30vw,440px);height:clamp(180px,30vw,440px);border-radius:50%;border:1px solid rgba(200,241,105,.18);background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.12),rgba(200,241,105,.025) 36%,transparent 68%);box-shadow:inset 0 0 60px rgba(200,241,105,.035),0 0 55px rgba(200,241,105,.035);animation:ksi-bubble-drift 22s ease-in-out infinite alternate}
+.ambient-bubbles:before{left:-9vw;top:18vh}
+.ambient-bubbles:after{right:-10vw;top:58vh;width:clamp(130px,22vw,320px);height:clamp(130px,22vw,320px);animation-delay:-9s;animation-duration:27s}
+@keyframes ksi-bubble-drift{0%{transform:translate3d(0,0,0) scale(.92)}50%{transform:translate3d(3vw,-5vh,0) scale(1.04)}100%{transform:translate3d(-2vw,4vh,0) scale(.98)}}
+main{position:relative;isolation:isolate}main>header,main>section,main>footer{position:relative;z-index:2}
+@media(prefers-reduced-motion:reduce){.ksi-crest,.ambient-bubbles:before,.ambient-bubbles:after{animation:none!important}html{scroll-behavior:auto}}
