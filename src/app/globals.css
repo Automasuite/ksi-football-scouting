@@ -140,3 +140,28 @@ main footer:before{content:"";position:absolute;inset:0;pointer-events:none;opac
 .stadium-audio-toggle span{background:rgba(237,139,67,.18);color:#f0a66c}
 .stadium-volume{accent-color:#ed8b43}
 @media(prefers-reduced-motion:reduce){.ambient-bubbles:before,.ambient-bubbles:after,main .section:after,main article,.ksi-staff-card{animation:none!important;transition:none!important}}
+
+/* Final atmosphere pass: faint crest, fine particles, subtle rain phase, larger rotating crest */
+.ksi-page-watermark{position:fixed;inset:0;z-index:0;pointer-events:none;display:grid;place-items:center;overflow:hidden}
+.ksi-page-watermark img{width:min(72vw,760px);height:auto;opacity:.045;filter:grayscale(.15);object-fit:contain;animation:ksi-watermark-breathe 18s ease-in-out infinite}
+@keyframes ksi-watermark-breathe{0%,100%{transform:scale(.96) rotate(-3deg);opacity:.035}50%{transform:scale(1.04) rotate(3deg);opacity:.065}}
+.ambient-bubbles{position:fixed;inset:0;z-index:4;pointer-events:none;overflow:hidden;opacity:.38}
+.ambient-bubbles:before,.ambient-bubbles:after{display:none}
+.ambient-bubbles span{position:absolute;bottom:-14px;left:var(--x,10%);width:var(--s,4px);height:var(--s,4px);border:1px solid rgba(237,139,67,.55);border-radius:50%;background:rgba(244,239,224,.1);box-shadow:0 0 8px rgba(237,139,67,.12);animation:ksi-bubble-rise var(--d,9s) linear var(--delay,0s) infinite}
+.ambient-bubbles span:nth-child(1){--x:4%;--s:3px;--d:8s;--delay:-2s}.ambient-bubbles span:nth-child(2){--x:11%;--s:4px;--d:10s;--delay:-6s}.ambient-bubbles span:nth-child(3){--x:19%;--s:2px;--d:7s;--delay:-4s}.ambient-bubbles span:nth-child(4){--x:27%;--s:4px;--d:11s;--delay:-1s}.ambient-bubbles span:nth-child(5){--x:34%;--s:3px;--d:8s;--delay:-5s}.ambient-bubbles span:nth-child(6){--x:42%;--s:2px;--d:9s;--delay:-7s}.ambient-bubbles span:nth-child(7){--x:49%;--s:4px;--d:12s;--delay:-3s}.ambient-bubbles span:nth-child(8){--x:56%;--s:3px;--d:7.5s;--delay:-6s}.ambient-bubbles span:nth-child(9){--x:63%;--s:2px;--d:10s;--delay:-2s}.ambient-bubbles span:nth-child(10){--x:70%;--s:4px;--d:8.5s;--delay:-4s}.ambient-bubbles span:nth-child(11){--x:77%;--s:3px;--d:11s;--delay:-8s}.ambient-bubbles span:nth-child(12){--x:84%;--s:2px;--d:7s;--delay:-1s}.ambient-bubbles span:nth-child(13){--x:91%;--s:4px;--d:9s;--delay:-5s}.ambient-bubbles span:nth-child(14){--x:97%;--s:3px;--d:12s;--delay:-7s}.ambient-bubbles span:nth-child(15){--x:15%;--s:2px;--d:13s;--delay:-9s}.ambient-bubbles span:nth-child(16){--x:37%;--s:3px;--d:9s;--delay:-3s}.ambient-bubbles span:nth-child(17){--x:60%;--s:4px;--d:10s;--delay:-8s}.ambient-bubbles span:nth-child(18){--x:81%;--s:2px;--d:8s;--delay:-4s}.ambient-bubbles span:nth-child(19){--x:95%;--s:3px;--d:11s;--delay:-6s}
+@keyframes ksi-bubble-rise{0%{transform:translate3d(0,0,0);opacity:0}12%{opacity:.8}88%{opacity:.65}100%{transform:translate3d(16px,-110vh,0);opacity:0}}
+.ambient-bubbles.ambient-mode-1 span{width:1px!important;height:10px!important;border:0;border-radius:1px;background:linear-gradient(180deg,transparent,rgba(200,220,235,.45),transparent);box-shadow:none;animation-name:ksi-rain-fall;animation-duration:1.7s!important;animation-delay:calc(var(--delay,0s)/3)}
+.ambient-bubbles.ambient-mode-2 span{width:2px!important;height:2px!important;border:0;background:rgba(245,240,230,.7);box-shadow:0 0 9px rgba(245,240,230,.28);animation-duration:5s!important}
+@keyframes ksi-rain-fall{from{transform:translate3d(0,-10vh,0);opacity:0}20%{opacity:.5}to{transform:translate3d(-18px,110vh,0);opacity:0}}
+.ksi-crest-shell{perspective:1100px;isolation:isolate}
+.ksi-crest{width:100%;height:100%;object-fit:contain;transform-style:preserve-3d;backface-visibility:visible;filter:drop-shadow(0 8px 14px rgba(0,0,0,.35));animation:ksi-crest-loop 11s cubic-bezier(.45,.05,.55,.95) infinite}
+@keyframes ksi-crest-loop{0%,30%{transform:perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)}48%{transform:perspective(1000px) rotateY(180deg) rotateX(7deg) scale(1.08)}62%,82%{transform:perspective(1000px) rotateY(360deg) rotateX(0deg) scale(1)}100%{transform:perspective(1000px) rotateY(360deg) rotateX(0deg) scale(1)}}
+main .ksi-hero-title span{display:block;animation:ksi-text-rise .9s cubic-bezier(.2,.75,.2,1) both}
+@keyframes ksi-text-rise{from{opacity:0;transform:translateY(16px);filter:blur(5px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+main .section#players,main .section#scouts{background:transparent!important}
+main .section#players .field,main .section#scouts .field{color:#f5f0e6!important;background:rgba(3,19,13,.82)!important}
+main .section#players .field option,main .section#scouts .field option{background:#0b2a20;color:#f5f0e6}
+main .section#players .border.border-black\/15{border-color:rgba(237,139,67,.28)}
+main .section#players article .p-6,main .section#scouts form{background:linear-gradient(145deg,rgba(16,49,37,.97),rgba(5,25,18,.98))!important;color:#f5f0e6}
+main .section#players article .p-6 p,main .section#scouts>div>div>p{color:rgba(245,240,230,.7)}
+@media(prefers-reduced-motion:reduce){.ksi-page-watermark img,.ambient-bubbles span,.ksi-crest,main .ksi-hero-title span{animation:none!important}}
