@@ -99,3 +99,44 @@ main article h3{font-family:Georgia,'Times New Roman',serif;letter-spacing:-.025
 main .eyebrow{color:#f0a66c}
 main footer{background:linear-gradient(110deg,#04150f,#0b3325 60%,#071c16)!important;border-top:1px solid rgba(237,139,67,.24)}
 @media(prefers-reduced-motion:reduce){.ksi-hero-title,.ksi-hero-title span{animation:none!important}}
+
+/* KSI premium refinement v2 */
+:root{--ksi-night:#061812;--ksi-panel:#0b2a20;--ksi-gold:#ed8b43;--ksi-ivory:#f5f0e6}
+body{background:var(--ksi-night);color:var(--ksi-ivory)}
+main{overflow:hidden;background:radial-gradient(ellipse at 18% 10%,rgba(237,139,67,.055),transparent 35%),radial-gradient(ellipse at 82% 55%,rgba(20,111,75,.16),transparent 42%),linear-gradient(145deg,#04150f,#09271d 55%,#061812)}
+main:before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.035;background-image:url('/images/ksifc-logo.jpeg');background-repeat:repeat;background-size:clamp(120px,17vw,230px);background-position:center;filter:grayscale(1)}
+main>section:not(.ksi-hero){background:transparent!important;color:var(--ksi-ivory)}
+main .tile,main article,main form{background:linear-gradient(145deg,rgba(16,49,37,.94),rgba(5,25,18,.97))!important;border-color:rgba(237,139,67,.2)!important;color:var(--ksi-ivory)}
+main .field{background:rgba(3,19,13,.82)!important;color:var(--ksi-ivory)!important;border-color:rgba(237,139,67,.25)!important}
+main .field::placeholder{color:rgba(245,240,230,.45)}
+main .section:before{opacity:.1}
+main .subhead,main .ksi-hero-title{font-family:Georgia,'Times New Roman',serif;font-weight:600;letter-spacing:-.045em}
+main .eyebrow{font-size:10px;letter-spacing:.22em;color:#f0a66c}
+.ambient-bubbles{z-index:1;opacity:.25;mix-blend-mode:screen}
+.ambient-bubbles:before,.ambient-bubbles:after{width:5px;height:5px;border:1px solid rgba(237,139,67,.7);background:radial-gradient(circle,rgba(245,240,230,.6),rgba(237,139,67,.08));box-shadow:0 0 12px rgba(237,139,67,.18);animation:ksi-particle-rise 8s linear infinite}
+.ambient-bubbles:before{left:12%;top:100vh}
+.ambient-bubbles:after{right:17%;top:100vh;width:4px;height:4px;animation-duration:11s;animation-delay:-5s}
+main .section:after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.1;background-image:radial-gradient(circle,rgba(245,240,230,.32) .6px,transparent .9px);background-size:38px 38px;mask-image:linear-gradient(180deg,transparent,#000 20%,#000 80%,transparent);animation:ksi-dust-drift 18s linear infinite}
+@keyframes ksi-particle-rise{0%{transform:translate3d(0,0,0) scale(.7);opacity:0}10%{opacity:.75}85%{opacity:.45}100%{transform:translate3d(28px,-115vh,0) scale(1.15);opacity:0}}
+@keyframes ksi-dust-drift{0%{background-position:0 0}100%{background-position:38px 76px}}
+main article{border-radius:4px!important;overflow:hidden;box-shadow:0 18px 55px rgba(0,0,0,.18);transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}
+main article:hover{transform:translateY(-5px);border-color:rgba(237,139,67,.5)!important;box-shadow:0 25px 65px rgba(0,0,0,.28)}
+main article h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(20px,2vw,25px);line-height:1.1;color:#fff0dc}
+main article img{object-position:center 18%;filter:saturate(.9) contrast(1.04)}
+main article .p-6{background:linear-gradient(160deg,rgba(14,49,36,.98),rgba(5,24,17,.98))}
+main article .p-6 p{color:rgba(245,240,230,.68)!important}
+main article .p-6 .border-y{border-color:rgba(237,139,67,.2)}
+main article .p-6 .text-emerald-900{color:#f0a66c}
+.ksi-staff-card{position:relative;overflow:hidden;border:1px solid rgba(237,139,67,.25);background:linear-gradient(145deg,#123b2b,#061b14);box-shadow:0 16px 38px rgba(0,0,0,.22);transition:transform .35s ease,border-color .35s ease}
+.ksi-staff-card:hover{transform:translateY(-4px);border-color:rgba(237,139,67,.65)}
+.ksi-staff-photo{display:block;width:100%;height:220px;object-fit:cover;object-position:center 24%;filter:saturate(.88);border-bottom:2px solid #ed8b43}
+.ksi-staff-name{font-family:Georgia,'Times New Roman',serif;font-size:18px;line-height:1.15;color:#fff0dc}
+#scouts form{border:1px solid rgba(237,139,67,.28)!important;box-shadow:0 24px 60px rgba(0,0,0,.22)}
+#gallery .relative{border:1px solid rgba(237,139,67,.2);box-shadow:0 16px 40px rgba(0,0,0,.2);transition:transform .4s ease,border-color .4s ease}
+#gallery .relative:hover{transform:translateY(-4px);border-color:rgba(237,139,67,.6)}
+main footer{background:linear-gradient(120deg,#03130e,#0a2b20 60%,#061812)!important;border-top:1px solid rgba(237,139,67,.35);position:relative}
+main footer:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.06;background:url('/images/ksifc-logo.jpeg') no-repeat 85% 50%/160px}
+.stadium-audio-control{border-color:rgba(237,139,67,.35);background:rgba(3,19,13,.94)}
+.stadium-audio-toggle span{background:rgba(237,139,67,.18);color:#f0a66c}
+.stadium-volume{accent-color:#ed8b43}
+@media(prefers-reduced-motion:reduce){.ambient-bubbles:before,.ambient-bubbles:after,main .section:after,main article,.ksi-staff-card{animation:none!important;transition:none!important}}
