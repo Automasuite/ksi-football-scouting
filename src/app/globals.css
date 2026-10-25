@@ -165,3 +165,48 @@ main .section#players .border.border-black\/15{border-color:rgba(237,139,67,.28)
 main .section#players article .p-6,main .section#scouts form{background:linear-gradient(145deg,rgba(16,49,37,.97),rgba(5,25,18,.98))!important;color:#f5f0e6}
 main .section#players article .p-6 p,main .section#scouts>div>div>p{color:rgba(245,240,230,.7)}
 @media(prefers-reduced-motion:reduce){.ksi-page-watermark img,.ambient-bubbles span,.ksi-crest,main .ksi-hero-title span{animation:none!important}}
+
+
+/* Immersive KSI welcome gate — club crest, leadership and player portraits */
+.ksi-welcome{position:fixed;inset:0;z-index:100;display:grid;place-items:center;overflow:auto;padding:clamp(12px,3vw,36px);background:#03130e;color:#f8f1e5;isolation:isolate}
+.ksi-welcome-backdrop{position:absolute;inset:0;background:linear-gradient(90deg,rgba(2,17,12,.94),rgba(3,28,19,.78) 48%,rgba(3,17,12,.91)),linear-gradient(0deg,rgba(3,14,10,.85),rgba(3,14,10,.18)),url('/images/ksi-fc-team-squad.jpeg') center 38%/cover;transform:scale(1.035);animation:ksi-welcome-backdrop 18s ease-in-out infinite alternate}
+.ksi-welcome:before{content:"";position:absolute;inset:12px;border:1px solid rgba(237,139,67,.32);pointer-events:none;z-index:1}
+.ksi-welcome-frame{position:relative;z-index:2;width:min(1080px,100%);max-height:calc(100vh - 44px);overflow:auto;border:1px solid rgba(237,139,67,.38);background:linear-gradient(135deg,rgba(5,31,22,.92),rgba(4,19,14,.89));box-shadow:0 28px 100px rgba(0,0,0,.5),inset 0 0 80px rgba(237,139,67,.035);backdrop-filter:blur(16px);padding:clamp(18px,3vw,38px);animation:ksi-welcome-arrive .9s cubic-bezier(.2,.8,.2,1) both}
+.ksi-welcome-topline{display:flex;justify-content:space-between;gap:14px;border-bottom:1px solid rgba(245,240,230,.17);padding-bottom:14px;font-size:9px;letter-spacing:.2em;color:rgba(245,240,230,.65)}
+.ksi-welcome-brand{display:flex;align-items:center;gap:clamp(16px,3vw,34px);margin:clamp(20px,3vw,34px) 0 16px}
+.ksi-welcome-crest{width:clamp(76px,11vw,126px);aspect-ratio:1;object-fit:contain;border-radius:50%;background:#fff;padding:4px;box-shadow:0 0 0 1px rgba(237,139,67,.7),0 0 0 8px rgba(237,139,67,.07),0 10px 36px rgba(0,0,0,.4);animation:ksi-welcome-crest 12s ease-in-out infinite}
+.ksi-welcome-overline{font-size:10px;letter-spacing:.2em;color:#f0a66c;font-weight:700}
+.ksi-welcome-brand h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(34px,5.4vw,66px);font-weight:500;letter-spacing:-.045em;line-height:.98;margin:12px 0 0}
+.ksi-welcome-brand h1 em{font-weight:400;color:#f0a66c}
+.ksi-welcome-copy{max-width:640px;font-size:clamp(12px,1.4vw,15px);line-height:1.75;color:rgba(245,240,230,.73);margin:0 0 22px}
+.ksi-welcome-people{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+.ksi-welcome-label{display:block;font-size:9px;letter-spacing:.19em;color:#f0a66c;font-weight:700;margin-bottom:10px}
+.ksi-welcome-portrait-row,.ksi-welcome-player-row{display:grid;gap:10px}
+.ksi-welcome-portrait-row{grid-template-columns:repeat(3,minmax(0,1fr))}
+.ksi-welcome-player-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ksi-welcome-people figure{position:relative;min-width:0;overflow:hidden;margin:0;background:#0b2b20;border:1px solid rgba(237,139,67,.22)}
+.ksi-welcome-portrait-row img{display:block;width:100%;height:clamp(94px,13vw,150px);object-fit:cover;object-position:center 22%;filter:saturate(.86)}
+.ksi-welcome-player-row img{display:block;width:100%;height:clamp(116px,16vw,174px);object-fit:cover;object-position:center 18%;filter:saturate(.9)}
+.ksi-welcome-people figcaption{padding:9px 10px 11px;background:linear-gradient(180deg,rgba(8,37,26,.95),rgba(4,21,15,.98))}
+.ksi-welcome-people figcaption strong,.ksi-welcome-people figcaption small{display:block;overflow-wrap:anywhere}
+.ksi-welcome-people figcaption strong{font-family:Georgia,'Times New Roman',serif;font-size:clamp(10px,1.1vw,13px);font-weight:600;color:#fff1df;line-height:1.2}
+.ksi-welcome-people figcaption small{margin-top:5px;font-size:8px;letter-spacing:.1em;color:rgba(245,240,230,.58);text-transform:uppercase}
+.ksi-welcome-footer{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;margin-top:22px;padding-top:17px;border-top:1px solid rgba(245,240,230,.16)}
+.ksi-welcome-footer>div{font-size:9px;letter-spacing:.14em;color:rgba(245,240,230,.68)}
+.ksi-welcome-pulse{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:8px;background:#ed8b43;box-shadow:0 0 0 0 rgba(237,139,67,.5);animation:ksi-welcome-pulse 2s infinite}
+.ksi-enter-button{display:flex;align-items:center;gap:24px;padding:15px 18px;border:1px solid #ed8b43;background:linear-gradient(110deg,#ed8b43,#f7bc7d);color:#13251a;font-size:10px;font-weight:800;letter-spacing:.13em;box-shadow:0 0 0 0 rgba(237,139,67,.22);animation:ksi-enter-glow 3s ease-in-out infinite;cursor:pointer}
+.ksi-enter-button b{font-size:20px;font-weight:400;transition:transform .25s}
+.ksi-enter-button:hover b{transform:translate(3px,-3px)}
+.ksi-welcome-footer>small{grid-column:1/-1;text-align:right;font-size:9px;color:rgba(245,240,230,.43)}
+.ambient-rain{position:fixed;inset:0;z-index:4;pointer-events:none;overflow:hidden;opacity:.25}
+.ambient-rain span{position:absolute;top:-15vh;left:var(--rx,5%);width:1px;height:clamp(16px,3vh,30px);background:linear-gradient(180deg,transparent,rgba(214,231,230,.72),transparent);animation:ksi-rain-fall var(--rd,2.4s) linear var(--rdelay,0s) infinite}
+.ambient-rain span:nth-child(1){--rx:7%;--rd:1.60s;--rdelay:-0s}\n.ambient-rain span:nth-child(2){--rx:44%;--rd:1.91s;--rdelay:-0.37s}\n.ambient-rain span:nth-child(3){--rx:81%;--rd:2.22s;--rdelay:-0.74s}\n.ambient-rain span:nth-child(4){--rx:18%;--rd:2.53s;--rdelay:-1.1099999999999999s}\n.ambient-rain span:nth-child(5){--rx:55%;--rd:2.84s;--rdelay:-1.48s}\n.ambient-rain span:nth-child(6){--rx:92%;--rd:3.15s;--rdelay:-1.85s}\n.ambient-rain span:nth-child(7){--rx:29%;--rd:3.46s;--rdelay:-2.2199999999999998s}\n.ambient-rain span:nth-child(8){--rx:66%;--rd:1.60s;--rdelay:-2.59s}\n.ambient-rain span:nth-child(9){--rx:3%;--rd:1.91s;--rdelay:-2.96s}\n.ambient-rain span:nth-child(10){--rx:40%;--rd:2.22s;--rdelay:-0s}\n.ambient-rain span:nth-child(11){--rx:77%;--rd:2.53s;--rdelay:-0.37s}\n.ambient-rain span:nth-child(12){--rx:14%;--rd:2.84s;--rdelay:-0.74s}\n.ambient-rain span:nth-child(13){--rx:51%;--rd:3.15s;--rdelay:-1.1099999999999999s}\n.ambient-rain span:nth-child(14){--rx:88%;--rd:3.46s;--rdelay:-1.48s}\n.ambient-rain span:nth-child(15){--rx:25%;--rd:1.60s;--rdelay:-1.85s}\n.ambient-rain span:nth-child(16){--rx:62%;--rd:1.91s;--rdelay:-2.2199999999999998s}\n.ambient-rain span:nth-child(17){--rx:99%;--rd:2.22s;--rdelay:-2.59s}\n.ambient-rain span:nth-child(18){--rx:36%;--rd:2.53s;--rdelay:-2.96s}\n.ambient-rain span:nth-child(19){--rx:73%;--rd:2.84s;--rdelay:-0s}\n.ambient-rain span:nth-child(20){--rx:10%;--rd:3.15s;--rdelay:-0.37s}\n.ambient-rain span:nth-child(21){--rx:47%;--rd:3.46s;--rdelay:-0.74s}\n.ambient-rain span:nth-child(22){--rx:84%;--rd:1.60s;--rdelay:-1.1099999999999999s}\n.ambient-rain span:nth-child(23){--rx:21%;--rd:1.91s;--rdelay:-1.48s}\n.ambient-rain span:nth-child(24){--rx:58%;--rd:2.22s;--rdelay:-1.85s}\n.ambient-rain span:nth-child(25){--rx:95%;--rd:2.53s;--rdelay:-2.2199999999999998s}\n.ambient-rain span:nth-child(26){--rx:32%;--rd:2.84s;--rdelay:-2.59s}\n.ambient-rain span:nth-child(27){--rx:69%;--rd:3.15s;--rdelay:-2.96s}\n.ambient-rain span:nth-child(28){--rx:6%;--rd:3.46s;--rdelay:-0s}
+@keyframes ksi-rain-fall{to{transform:translate3d(-24px,125vh,0);opacity:0}}
+@keyframes ksi-welcome-arrive{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes ksi-welcome-backdrop{from{transform:scale(1.035);filter:saturate(.85)}to{transform:scale(1.09);filter:saturate(1.04)}}
+@keyframes ksi-welcome-crest{0%,40%,100%{transform:rotateY(0)}55%{transform:rotateY(180deg)}70%{transform:rotateY(360deg)}}
+@keyframes ksi-enter-glow{0%,100%{box-shadow:0 0 0 0 rgba(237,139,67,.08)}50%{box-shadow:0 0 0 7px rgba(237,139,67,.09),0 0 30px rgba(237,139,67,.12)}}
+@keyframes ksi-welcome-pulse{to{box-shadow:0 0 0 8px rgba(237,139,67,0)}}
+@media(max-width:700px){.ksi-welcome{padding:12px}.ksi-welcome-frame{max-height:calc(100vh - 24px);padding:17px}.ksi-welcome-topline{font-size:7px;letter-spacing:.12em}.ksi-welcome-brand{gap:14px}.ksi-welcome-overline{font-size:8px;letter-spacing:.13em}.ksi-welcome-people{grid-template-columns:1fr;gap:14px}.ksi-welcome-portrait-row img{height:100px}.ksi-welcome-player-row img{height:130px}.ksi-welcome-footer{grid-template-columns:1fr}.ksi-welcome-footer>div{font-size:8px}.ksi-enter-button{width:100%;justify-content:space-between}.ksi-welcome-footer>small{text-align:left}}
+@media(max-height:780px) and (min-width:701px){.ksi-welcome-frame{padding:20px}.ksi-welcome-brand{margin:16px 0 10px}.ksi-welcome-portrait-row img{height:100px}.ksi-welcome-player-row img{height:112px}.ksi-welcome-copy{margin-bottom:14px}.ksi-welcome-footer{margin-top:14px;padding-top:12px}}
+@media(prefers-reduced-motion:reduce){.ksi-welcome-backdrop,.ksi-welcome-frame,.ksi-welcome-crest,.ksi-enter-button,.ksi-welcome-pulse,.ambient-rain span{animation:none!important}}
