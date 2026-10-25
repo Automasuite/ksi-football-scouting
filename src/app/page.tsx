@@ -9,15 +9,23 @@ const players: Player[] = [
   { name: "Adefila Sheriff Adeyemi", role: "Striker", number: "14", dob: "Not supplied", tag: "ATTACK", accent: "from-emerald-950 to-slate-800", summary: "Age 17 · Right-footed. Additional verified attributes and performance statistics will be added by club staff." },
 ];
 const Arrow = () => <span aria-hidden="true">↗</span>;
+const heroSlides = [
+  { image: "/images/ksi-fc-team-squad.jpeg", label: "THE SQUAD", title: "One club. Many futures.", description: "Discover the people and ambition behind KSI Football." },
+  { image: "/images/ksi-fc-manager-and-players.jpeg", label: "CLUB CULTURE", title: "Built on belief. Driven by the game.", description: "A club environment focused on player growth and opportunity." },
+  { image: "/images/ksifc-coach-and-executives.jpeg", label: "LEADERSHIP", title: "Guidance behind every journey.", description: "Meet the people supporting the next generation of talent." },
+  { image: "/images/ksi-fc-maduike-chidera-vincent.jpeg", label: "PLAYER SPOTLIGHT", title: "Talent deserves to be seen.", description: "Explore club-supplied player profiles for scouting conversations." },
+];
 
 export default function Home() {
   const [query, setQuery] = useState("");
   const [position, setPosition] = useState("All positions");
   const [notice, setNotice] = useState("");
+  const [heroSlide, setHeroSlide] = useState(0);
   const [stadiumSound, setStadiumSound] = useState(false);
   const [stadiumVolume, setStadiumVolume] = useState(12);
   const stadiumAudio = useRef<HTMLAudioElement | null>(null);
   useEffect(() => { if (stadiumAudio.current) stadiumAudio.current.volume = stadiumVolume / 100; }, [stadiumVolume]);
+  useEffect(() => { const timer = window.setInterval(() => setHeroSlide(current => (current + 1) % heroSlides.length), 6500); return () => window.clearInterval(timer); }, []);
   useEffect(() => { const audio = stadiumAudio.current; if (!audio) return; audio.volume = stadiumVolume / 100; void audio.play().then(() => setStadiumSound(true)).catch(() => setStadiumSound(false)); return () => audio.pause(); }, []);
   const toggleStadiumSound = async () => { const audio = stadiumAudio.current; if (!audio) return; if (stadiumSound) { audio.pause(); setStadiumSound(false); return; } audio.volume = stadiumVolume / 100; try { await audio.play(); setStadiumSound(true); } catch { setStadiumSound(false); setNotice("Your browser blocked automatic audio. Tap the sound control again after interacting with the page."); } };
   const filtered = useMemo(() => players.filter(p => (p.name.toLowerCase().includes(query.toLowerCase()) || p.role.toLowerCase().includes(query.toLowerCase())) && (position === "All positions" || p.role === position)), [query, position]);
@@ -30,20 +38,32 @@ export default function Home() {
         <a className="btn" href="#scouts">Scout enquiries <Arrow /></a>
       </div>
     </header>
-    <section id="home" className="relative overflow-hidden text-white" style={{background:"radial-gradient(ellipse at 82% 25%, rgba(200,241,105,.16), transparent 30%), linear-gradient(125deg,#071c17 0%,#0b342a 60%,#144735 100%)"}}>
-      <div className="container grid min-h-[620px] items-center gap-10 py-20 lg:grid-cols-[1.1fr_.9fr]">
-        <div className="relative z-10"><p className="eyebrow mb-7 text-lime-200">Development. Discipline. Opportunity.</p><h1 className="display max-w-[760px]">A pathway to the <span className="text-lime-200">next level.</span></h1><p className="mt-7 max-w-[510px] text-[16px] leading-7 text-white/70">Meet the players, discover the academy and connect with KSI Football through a dedicated scouting centre.</p><div className="mt-9 flex flex-wrap gap-3"><a className="btn" href="#players">Explore player profiles <Arrow /></a><a className="btn btn-ghost" href="#club">Discover KSI</a></div><div className="mt-14 flex flex-wrap gap-x-8 gap-y-4 border-t border-white/15 pt-6"><div><strong className="block text-2xl">01</strong><span className="text-xs text-white/55">Player directory preview</span></div><div><strong className="block text-2xl">Club-led</strong><span className="text-xs text-white/55">Profiles and verification</span></div><div><strong className="block text-2xl">Global</strong><span className="text-xs text-white/55">Scouting ambition</span></div></div></div>
-        <div className="relative mx-auto w-full max-w-[500px]">
-          <div className="absolute -right-4 -top-6 h-36 w-36 rounded-full border border-lime-200/30"/><div className="absolute -bottom-6 -left-6 h-48 w-48 rounded-full border border-white/10"/>
-          <div className="relative min-h-[420px] overflow-hidden border border-white/15 bg-white/[.04] p-6 backdrop-blur-sm">
-            <div className="absolute inset-0 opacity-30" style={{backgroundImage:"linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.12) 1px,transparent 1px)",backgroundSize:"34px 34px"}}/>
-            <div className="relative flex items-center justify-between"><span className="eyebrow text-lime-200">Scouting centre</span><span className="rounded-full border border-lime-200/40 px-3 py-1 text-[10px] tracking-widest text-lime-100">FOUNDATION PREVIEW</span></div>
-            <div className="relative mt-12 flex min-h-[250px] items-center justify-center"><div className="absolute h-60 w-60 rounded-full border border-lime-100/20"/><div className="absolute h-44 w-44 rounded-full border border-lime-100/20"/><div className="ksi-crest-shell grid h-36 w-36 place-items-center"><div className="ksi-crest grid h-32 w-32 place-items-center rounded-full border border-lime-100/70 bg-gradient-to-br from-lime-100 via-lime-200 to-emerald-300 text-4xl font-black tracking-[-.1em] text-emerald-950 shadow-[inset_-10px_-12px_24px_rgba(10,46,38,.22),inset_8px_8px_20px_rgba(255,255,255,.7),0_0_80px_rgba(200,241,105,.2)]">KSI</div></div><div className="absolute left-4 top-8 border border-white/15 bg-emerald-950/80 px-3 py-2"><span className="block text-[10px] text-white/55">PLAYER PROFILES</span><strong className="text-sm">Talent, clearly presented</strong></div><div className="absolute bottom-5 right-0 border border-white/15 bg-emerald-950/80 px-3 py-2"><span className="block text-[10px] text-white/55">SCOUT ACCESS</span><strong className="text-sm">Direct enquiries</strong></div></div>
-            <div className="relative mt-4 flex justify-between border-t border-white/15 pt-4 text-[10px] tracking-[.17em] text-white/50"><span>PLAYER DEVELOPMENT</span><span>EST. KSI FOOTBALL</span></div>
+    <section id="home" className="ksi-hero relative overflow-hidden text-white">
+      {heroSlides.map((slide, index) => <div key={slide.image} className={"ksi-hero-slide "+(heroSlide===index?"is-active":"")} aria-hidden={heroSlide!==index}>
+        <img src={slide.image} alt="" className="ksi-hero-image" fetchPriority={index===0?"high":"auto"} />
+      </div>)}
+      <div className="ksi-hero-shade" />
+      <div className="ksi-hero-grain" aria-hidden="true" />
+      <div className="container relative z-[4] grid min-h-[720px] items-end gap-12 py-16 lg:grid-cols-[1.1fr_.9fr] lg:items-center lg:py-24">
+        <div className="max-w-3xl pb-5 lg:pb-0">
+          <div className="ksi-hero-kicker"><span className="ksi-live-dot" /> KSI FOOTBALL CLUB & ACADEMY <span className="ksi-kicker-rule" /> NIGERIA</div>
+          <p className="eyebrow mb-6 mt-8 text-orange-200">{heroSlides[heroSlide].label} · DEVELOPMENT. DISCIPLINE. OPPORTUNITY.</p>
+          <h1 className="ksi-hero-title">{heroSlides[heroSlide].title.split(".")[0]}<span>{heroSlides[heroSlide].title.includes(".")?heroSlides[heroSlide].title.slice(heroSlides[heroSlide].title.indexOf(".")+1):""}</span></h1>
+          <p className="mt-7 max-w-xl text-base leading-7 text-white/80 md:text-lg">{heroSlides[heroSlide].description}</p>
+          <div className="mt-9 flex flex-wrap gap-3"><a className="btn ksi-btn-primary" href="#players">Explore player profiles <Arrow /></a><a className="btn btn-ghost ksi-btn-outline" href="#club">Discover KSI</a></div>
+          <div className="ksi-hero-bottomline mt-14 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-white/25 pt-6">
+            <div><strong className="block text-2xl">01</strong><span className="text-[11px] text-white/65">Player directory preview</span></div>
+            <div><strong className="block text-2xl">Club-led</strong><span className="text-[11px] text-white/65">Profiles & verification</span></div>
+            <div><strong className="block text-2xl">Global</strong><span className="text-[11px] text-white/65">Scouting ambition</span></div>
           </div>
         </div>
+        <div className="ksi-hero-feature relative hidden lg:block">
+          <div className="ksi-feature-frame"><img src={heroSlides[heroSlide].image} alt={heroSlides[heroSlide].label+" — KSI Football Club"} className="ksi-feature-image" /><div className="ksi-feature-overlay"/><div className="ksi-feature-top"><span>OFFICIAL CLUB MEDIA</span><span className="ksi-feature-index">0{heroSlide+1} / 0{heroSlides.length}</span></div><div className="ksi-feature-caption"><span className="eyebrow text-orange-200">{heroSlides[heroSlide].label}</span><p>{heroSlides[heroSlide].title}</p><span>PLAYER DEVELOPMENT · SCOUTING CENTRE</span></div><div className="ksi-feature-orbit" aria-hidden="true"/></div>
+          <div className="ksi-hero-controls"><div className="ksi-hero-dots" role="group" aria-label="Choose hero slide">{heroSlides.map((slide,index)=><button key={slide.image} type="button" className={"ksi-hero-dot "+(heroSlide===index?"is-active":"")} aria-label={"Show slide "+(index+1)} aria-pressed={heroSlide===index} onClick={()=>setHeroSlide(index)} />)}</div><div className="ksi-hero-arrows"><button type="button" aria-label="Previous slide" onClick={()=>setHeroSlide(i=>(i+heroSlides.length-1)%heroSlides.length)}>←</button><button type="button" aria-label="Next slide" onClick={()=>setHeroSlide(i=>(i+1)%heroSlides.length)}>→</button></div></div>
+        </div>
       </div>
-      <div className="absolute bottom-0 left-0 h-1 w-2/5 bg-lime-200"/>
+      <div className="ksi-hero-mobile-controls lg:hidden"><div className="ksi-hero-dots" role="group" aria-label="Choose hero slide">{heroSlides.map((slide,index)=><button key={slide.image} type="button" className={"ksi-hero-dot "+(heroSlide===index?"is-active":"")} aria-label={"Show slide "+(index+1)} aria-pressed={heroSlide===index} onClick={()=>setHeroSlide(index)} />)}</div><span>0{heroSlide+1} / 0{heroSlides.length}</span></div>
+      <div className="ksi-hero-progress"><span key={heroSlide} /></div>
     </section>
     <section id="club" className="section"><div className="container grid gap-10 md:grid-cols-[.75fr_1.25fr]"><div><p className="eyebrow mb-5 text-emerald-800">01 / The club</p><h2 className="subhead max-w-md">Built around the journey of every player.</h2></div><div><p className="max-w-2xl text-lg leading-8 text-slate-600">KSI Football Club and KSI Football Academy are building a home for player development and international scouting. This centre is designed to help scouts find relevant profiles, understand verified information and start a professional conversation with the club.</p><div className="mt-8 grid gap-3 sm:grid-cols-3"><div className="tile p-5"><span className="eyebrow text-emerald-800">01</span><strong className="mt-5 block text-sm">Player-first</strong><p className="mt-2 text-xs leading-5 text-slate-500">Profiles built around relevant, checked information.</p></div><div className="tile p-5"><span className="eyebrow text-emerald-800">02</span><strong className="mt-5 block text-sm">Scout-ready</strong><p className="mt-2 text-xs leading-5 text-slate-500">Searchable profiles and a clear enquiry route.</p></div><div className="tile p-5"><span className="eyebrow text-emerald-800">03</span><strong className="mt-5 block text-sm">Club-managed</strong><p className="mt-2 text-xs leading-5 text-slate-500">A planned admin workflow for updates and publishing.</p></div></div></div></div></section>
     <section id="players" className="section" style={{background:"#eeeee6"}}><div className="container"><div className="flex flex-wrap items-end justify-between gap-6"><div><p className="eyebrow mb-5 text-emerald-800">02 / Meet the talent</p><h2 className="subhead">Player directory</h2><p className="mt-4 max-w-xl text-sm leading-6 text-slate-600">A first profile preview using player details provided by the club. Physical attributes and performance statistics remain unpublished until confirmed.</p></div><span className="border border-black/15 px-4 py-2 text-xs">{filtered.length} profiles shown</span></div>
